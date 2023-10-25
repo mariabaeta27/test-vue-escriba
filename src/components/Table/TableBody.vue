@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { InterfaceBodyTableUser } from '@/types'
 import { PencilIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import TableHead from './TableHead.vue'
 
 defineProps<{
   body: InterfaceBodyTableUser[]
@@ -9,20 +10,15 @@ defineProps<{
 
 <template>
   <div>
+    <p>{{ body }}</p>
     <table class="table">
-      <thead>
-        <th class="cell-id">ID</th>
-        <th>Nome</th>
-        <th>Documento</th>
-        <th>Data de nascimento</th>
-        <th class="cell-actions">Ações</th>
-      </thead>
+      <TableHead />
       <tbody>
         <tr v-for="item in body" :key="item.id.children">
           <td>{{ item.id.children }}</td>
-          <td>{{ item.nome.children }}</td>
-          <td>{{ item.cpf.children }}</td>
-          <td>{{ new Date(item.dataNascimento.children) }}</td>
+          <td>Maria</td>
+          <td>XXXXXXXX</td>
+          <td>xx/xx/xx</td>
           <td class="actions">
             <button>
               <PencilIcon class="icon" />

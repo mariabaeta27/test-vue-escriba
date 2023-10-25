@@ -3,6 +3,11 @@ import TitleComponent from '../components/TitleComponent.vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import FilterComponent from '@/components/Filter/FilterComponent.vue'
 import TableComponent from '@/components/Table/TableComponent.vue'
+import type { InterfaceBodyTableUser, InterfaceUser } from '@/types'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
+const users = computed(() => store.getters.formatUsers)
 </script>
 
 <template>
@@ -13,7 +18,7 @@ import TableComponent from '@/components/Table/TableComponent.vue'
       <!-- Implementar lógica do botão de adicionar mais usuários -->
       <ButtonComponent text="Adicionar" :icon="true" />
     </div>
-    <TableComponent />
+    <TableComponent :body="users" />
   </div>
 </template>
 
