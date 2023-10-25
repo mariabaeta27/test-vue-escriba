@@ -2,6 +2,7 @@
 import TitleComponent from '../components/TitleComponent.vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import FilterComponent from '@/components/Filter/FilterComponent.vue'
+import TableComponent from '@/components/Table/TableComponent.vue'
 </script>
 
 <template>
@@ -12,25 +13,19 @@ import FilterComponent from '@/components/Filter/FilterComponent.vue'
       <!-- Implementar lógica do botão de adicionar mais usuários -->
       <ButtonComponent text="Adicionar" :icon="true" />
     </div>
-    <div class="table">Table</div>
+    <TableComponent />
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .body-users {
-    display: flex;
-    flex-direction: column;
-  }
+<style scoped>
+.body-users {
+  display: flex;
+  flex-direction: column;
+}
 
-  .add-button {
-    display: flex;
-    justify-content: end;
-    padding: 10px;
-  }
-
-  .table {
-    border: 1px solid;
-  }
+.add-button {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
 }
 </style>

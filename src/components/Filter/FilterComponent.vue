@@ -12,7 +12,7 @@ import ButtonComponent from '@/components/ButtonComponent.vue'
   </form>
 </template>
 
-<style>
+<style scoped>
 .filter {
   display: flex;
   align-items: center;

@@ -4,12 +4,10 @@
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .orders {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.orders {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 </style>

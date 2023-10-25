@@ -23,7 +23,7 @@ defineProps<{
   </button>
 </template>
 
-<style>
+<style scoped>
 .custom-button {
   border-radius: 5px;
   color: #3fb984;
