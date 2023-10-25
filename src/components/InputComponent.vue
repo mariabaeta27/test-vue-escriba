@@ -1,11 +1,12 @@
 <script setup lang="ts">
-// defineProps<{
-//   text: string
-// }>()
+defineProps<{
+  type: string
+  placeholder: string
+}>()
 </script>
 
 <template>
-  <input type="text" />
+  <input :type="type" :placeholder="placeholder" />
 </template>
 
 <style>

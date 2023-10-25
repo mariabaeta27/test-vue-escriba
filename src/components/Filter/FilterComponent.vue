@@ -5,10 +5,11 @@ import ButtonComponent from '@/components/ButtonComponent.vue'
 </script>
 
 <template>
-  <div class="filter">
-    <InputComponent />
+  <form class="filter">
+    <!-- Implementar logica do form -->
+    <InputComponent :type="'text'" placeholder="Filtar Usuários" />
     <ButtonComponent text="Filtrar" />
-  </div>
+  </form>
 </template>
 
 <style>

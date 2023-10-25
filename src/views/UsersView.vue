@@ -9,6 +9,7 @@ import FilterComponent from '@/components/Filter/FilterComponent.vue'
     <TitleComponent text="Lista de Usuários" />
     <FilterComponent />
     <div class="add-button">
+      <!-- Implementar lógica do botão de adicionar mais usuários -->
       <ButtonComponent text="Adicionar" :icon="true" />
     </div>
     <div class="table">Table</div>
