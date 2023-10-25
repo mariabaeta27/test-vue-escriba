@@ -1,0 +1,21 @@
+<script setup lang="ts">
+// defineProps<{
+//   text: string
+// }>()
+</script>
+
+<template>
+  <input type="text" />
+</template>
+
+<style>
+@media (min-width: 1024px) {
+  input {
+    border: 1px solid #3fb984;
+    padding: 3px;
+    border-radius: 5px;
+    margin-right: 5px;
+    width: auto;
+  }
+}
+</style>
