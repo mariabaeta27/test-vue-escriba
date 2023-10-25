@@ -1,22 +1,9 @@
-<script setup lang="ts">
-import { UsersIcon, TagIcon, ClipboardDocumentCheckIcon } from '@heroicons/vue/24/outline'
-</script>
-
 <template>
   <header class="navigation">
-    <!-- Preciso colocar para mudar a cor quando uma rota estiver selecionada -->
-    <nav>
-      <RouterLink to="/users">
-        <UsersIcon class="icon" />
-        Usuários
-      </RouterLink>
-      <RouterLink to="/products">
-        <ClipboardDocumentCheckIcon class="icon" />
-        Produtos
-      </RouterLink>
-      <RouterLink to="/orders">
-        <TagIcon class="icon" />
-        Pedidos
+    <nav v-for="route in routes" :key="route.text">
+      <RouterLink :to="route.path" class="route">
+        <p v-html="route.icon" class="icon"></p>
+        <p>{{ route.text }}</p>
       </RouterLink>
     </nav>
   </header>
@@ -46,5 +33,14 @@ import { UsersIcon, TagIcon, ClipboardDocumentCheckIcon } from '@heroicons/vue/2
 
 .icon {
   height: 30px;
+  display: flex;
+  justify-content: center;
 }
 </style>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
+const routes = computed(() => store.state.routes)
+</script>

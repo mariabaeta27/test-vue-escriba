@@ -16,6 +16,7 @@ const router = createRouter({
       name: 'users',
       component: UserVier
     },
+    // Rotas que serão implementadas posteriormente
     {
       path: '/products',
       name: 'products',
