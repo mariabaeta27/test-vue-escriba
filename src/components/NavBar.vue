@@ -1,13 +1,10 @@
 <script setup lang="ts">
-// defineProps<{
-//   msg: string
-// }>()
 import { UsersIcon, TagIcon, ClipboardDocumentCheckIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <!-- Preciso colocar para mudar a cor quando uma rota estiver selecionada -->
   <header class="navigation">
+    <!-- Preciso colocar para mudar a cor quando uma rota estiver selecionada -->
     <nav>
       <RouterLink to="/users">
         <UsersIcon class="icon" />
@@ -28,7 +25,7 @@ import { UsersIcon, TagIcon, ClipboardDocumentCheckIcon } from '@heroicons/vue/2
 <style scoped>
 .navigation {
   border-radius: 5px;
-  margin-right: 3rem;
+  margin-right: 2rem;
   padding: 1rem;
   box-shadow: 4px 0px 22px -2px rgba(176, 176, 176, 0.75);
   -webkit-box-shadow: 4px 0px 22px -2px rgba(176, 176, 176, 0.75);

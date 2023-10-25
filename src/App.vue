@@ -11,8 +11,9 @@ import NavBar from './components/NavBar.vue'
 </template>
 
 <style scoped>
-#body {
+div {
   height: 100vh;
   display: flex;
+  width: 100%;
 }
 </style>
