@@ -73,6 +73,10 @@ const store = createStore({
     async deleteUser({ commit }, id) {
       try {
         await axios.delete(`http://localhost:3000/pessoas/${id}`)
+
+        const { data } = await axios.get('http://localhost:3000/pessoas')
+        commit('GET_USERS', data)
+
         commit('SET_STATUS', 'OK')
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel deletar esse usuário')
@@ -104,10 +108,14 @@ const store = createStore({
         !state.idUser
           ? await axios.post('http://localhost:3000/pessoas/', user)
           : await axios.put(`http://localhost:3000/pessoas/${state.idUser}`, user)
+
+        const { data } = await axios.get('http://localhost:3000/pessoas')
+        commit('GET_USERS', data)
       } catch (error) {
         console.log()
         commit('ERROR', error)
       }
+
       commit('GET_USER_ID', '')
     },
 
