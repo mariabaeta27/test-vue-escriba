@@ -1,28 +1,22 @@
 {
   "pessoas": [
     {
-      "nome": "Maria Testes 2",
-      "cpf": "581.326.606-25",
-      "dataNascimento": "2023-10-25",
-      "id": 1
+      "id": 1,
+      "nome": "cliente 1",
+      "cpf": "000.000.000-00",
+      "dataNascimento": "1999-12-31"
     },
     {
-      "nome": "Maria Tests",
-      "cpf": "58132660625",
-      "dataNascimento": "2023-10-25",
-      "id": 4
+      "id": 2,
+      "nome": "cliente 2",
+      "cpf": "000.000.001-00",
+      "dataNascimento": "1999-12-31"
     },
     {
-      "nome": "Ana",
+      "nome": "Maria",
       "cpf": "120.023.346-84",
-      "dataNascimento": "2023-10-25",
-      "id": 5
-    },
-    {
-      "nome": "Felipe",
-      "cpf": "581.326.606-25",
-      "dataNascimento": "2023-10-25",
-      "id": 6
+      "dataNascimento": "1994-09-27",
+      "id": 3
     }
   ],
   "produtos": [

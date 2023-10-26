@@ -1,12 +1,14 @@
 import { createStore } from 'vuex'
 
 import { routes } from './modules'
-import { format } from 'date-fns'
+
 import type { InterfaceUser } from '@/types'
 
 import { cpf } from 'cpf-cnpj-validator'
 
 import axios from 'axios'
+
+import moment from 'moment'
 
 const store = createStore({
   state: {
@@ -21,7 +23,7 @@ const store = createStore({
     formatUsers({ users }) {
       return users?.map((user: InterfaceUser) => ({
         ...user,
-        dataNascimento: format(new Date(user.dataNascimento), 'dd/MM/yyyy')
+        dataNascimento: moment(user.dataNascimento).format('DD/MM/YYYY')
       }))
     },
     setUserId({ idUser }) {

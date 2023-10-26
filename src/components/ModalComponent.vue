@@ -36,6 +36,7 @@ const submitForm = (event: Event) => {
     cpf: cpf.format(data.value.cpf),
     dataNascimento: data.value.dataNascimento
   })
+  emits('close')
 }
 
 const closeModal = () => {
