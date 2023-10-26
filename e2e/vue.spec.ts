@@ -1,19 +1,15 @@
 import { test, expect } from '@playwright/test'
 test('test', async ({ page }) => {
-  //Acessando a aplicaçao
   await page.goto('http://localhost:5173/')
 
   const title = page.getByTestId('title')
-  console.log(title)
+
   await expect(title).toHaveText('Lista de Usuários')
 
-  // Abrindo modal
   const buttonAddUser = page.getByTestId('addUser')
   buttonAddUser.click()
   const titleModal = page.getByTestId('title-modal')
   await expect(titleModal).toHaveText('Novo Usuário')
-
-  // Testando inputs
 
   await page.getByPlaceholder('Digite aqui o nome').click()
   await page.getByRole('contentinfo').getByRole('button', { name: 'Adicionar' }).click()

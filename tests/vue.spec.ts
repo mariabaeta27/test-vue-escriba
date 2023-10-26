@@ -4,7 +4,7 @@ test('test', async ({ page }) => {
   await page.goto('http://localhost:5173/')
 
   const title = page.getByTestId('title')
-  console.log(title)
+
   await expect(title).toHaveText('Lista de Usuários')
 
   // Abrindo modal
