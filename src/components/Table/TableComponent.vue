@@ -4,13 +4,19 @@ import { PencilIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { useStore } from 'vuex'
 const store = useStore()
 
-function deleteUser(id: number) {
-  store.dispatch('deleteUser', id)
-}
+const emits = defineEmits(['showModal'])
 
 defineProps<{
   body: InterfaceUser[]
 }>()
+
+const deleteUser = (id: number) => {
+  store.dispatch('deleteUser', id)
+}
+const editUser = (id: number) => {
+  emits('showModal')
+  store.dispatch('setUserId', id)
+}
 </script>
 
 <template>
@@ -31,7 +37,7 @@ defineProps<{
           <td>{{ item.dataNascimento }}</td>
           <td class="actions">
             <button>
-              <PencilIcon class="icon" />
+              <PencilIcon class="icon" v-on:click="editUser(item.id)" />
             </button>
             <button v-on:click="deleteUser(item.id)">
               <XMarkIcon class="icon" />

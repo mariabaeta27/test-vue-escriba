@@ -4,15 +4,18 @@ import { routes } from './modules'
 import { format } from 'date-fns'
 import type { InterfaceUser } from '@/types'
 
+import { cpf } from 'cpf-cnpj-validator'
+
 import axios from 'axios'
 
 const store = createStore({
   state: {
     users: [],
-    filteredUsers: [],
     status: '',
     error: '',
-    routes
+    idUser: '',
+    routes,
+    user: ''
   },
   getters: {
     formatUsers({ users }) {
@@ -21,7 +24,13 @@ const store = createStore({
         dataNascimento: format(new Date(user.dataNascimento), 'dd/MM/yyyy')
       }))
     },
-    getFilteredUsers: (state) => state.filteredUsers
+    setUserId({ idUser }) {
+      return idUser && idUser !== '' ? idUser : null
+    },
+
+    getUser({ user }) {
+      return user
+    }
   },
   mutations: {
     GET_USERS(state, users) {
@@ -32,6 +41,13 @@ const store = createStore({
     },
     SET_STATUS(state, status) {
       state.status = status
+    },
+
+    GET_USER_ID(state, id) {
+      state.idUser = id
+    },
+    GET_USER(state, data) {
+      state.user = data
     }
   },
   actions: {
@@ -51,6 +67,7 @@ const store = createStore({
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
       }
     },
+
     async deleteUser({ commit }, id) {
       try {
         await axios.delete(`http://localhost:3000/pessoas/${id}`)
@@ -58,6 +75,43 @@ const store = createStore({
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel deletar esse usuário')
       }
+    },
+
+    async getUser({ commit, state }) {
+      try {
+        const { data, statusText } = await axios.get(
+          `http://localhost:3000/pessoas/${state.idUser}`
+        )
+
+        commit('GET_USER', data)
+        commit('SET_STATUS', statusText)
+      } catch (error) {
+        commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
+      }
+    },
+
+    async manageUser({ commit, state }, user: InterfaceUser) {
+      console.log(user)
+
+      try {
+        const documentIsValid = cpf.isValid(user.cpf)
+        console.log(documentIsValid)
+        if (!documentIsValid) {
+          throw new Error('Ops! Ocorreu o seguinte erro: Cpf informado é inválido')
+        }
+        !state.idUser
+          ? await axios.post('http://localhost:3000/pessoas/', user)
+          : await axios.put(`http://localhost:3000/pessoas/${state.idUser}`, user)
+      } catch (error) {
+        console.log()
+        commit('ERROR', error)
+      }
+      commit('GET_USER_ID', '')
+    },
+
+    setUserId({ commit }, id) {
+      console.log(id)
+      commit('GET_USER_ID', id)
     }
   }
 })
