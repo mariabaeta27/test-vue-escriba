@@ -58,6 +58,7 @@ const clearMessage = () => {
         Adicionar
       </button>
     </div>
+
     <TableComponent :body="users" @showModal="showModal" />
     <ModalComponent
       v-if="data.isModalVisible"

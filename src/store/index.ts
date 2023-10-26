@@ -74,9 +74,11 @@ const store = createStore({
               user.nome.toLowerCase().includes(userName.toLowerCase())
             )
           : data
+
         commit('GET_USERS', users)
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
+        commit('GET_USERS', null)
       }
     },
 

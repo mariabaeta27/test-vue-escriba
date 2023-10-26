@@ -21,7 +21,15 @@ const editUser = (id: number) => {
 
 <template>
   <div>
-    <table class="table">
+    <div v-if="!body" class="empty-users">
+      <h3>Não há registro de usuários</h3>
+    </div>
+
+    <div v-if="body && body.length === 0" class="empty-users">
+      <h3>Não há usuários cadastrados</h3>
+    </div>
+
+    <table class="table" v-if="body && body.length !== 0">
       <thead>
         <th class="cell-id">ID</th>
         <th>Nome</th>
@@ -50,6 +58,10 @@ const editUser = (id: number) => {
 </template>
 
 <style scoped>
+.empty-users {
+  text-align: center;
+  padding: 1rem;
+}
 .table {
   width: 100%;
   margin-right: 10px;
