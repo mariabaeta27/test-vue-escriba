@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <header class="title">
-    <h1>{{ text }}</h1>
+    <h1 data-testid="title">{{ text }}</h1>
   </header>
 </template>
 

@@ -49,13 +49,13 @@ const closeModal = () => {
   <div class="modal">
     <div class="modal-content">
       <header>
-        <h1>{{ `${!id ? 'Novo' : 'Editar'} Usuários` }}</h1>
+        <h1 data-testid="title-modal">{{ `${!id ? 'Novo' : 'Editar'} Usuário` }}</h1>
       </header>
       <form class="modal-content-inputs" @submit="submitForm">
         <label for="">Nome</label>
         <input class="input" v-model="data.nome" required placeholder="Digite aqui o nome" />
         <label for="">Documento</label>
-        <input class="input" v-model="data.cpf" placeholder="Digite aqui o CPF" />
+        <input class="input" v-model="data.cpf" placeholder="Digite aqui o CPF" required />
         <label for="">Data de nascimento</label>
         <input class="input" v-model="data.dataNascimento" type="date" required />
         <footer>

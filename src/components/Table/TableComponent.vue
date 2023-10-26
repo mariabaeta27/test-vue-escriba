@@ -35,7 +35,7 @@ const editUser = (id: number) => {
           <td>{{ item.nome }}</td>
           <td>{{ item.cpf }}</td>
           <td>{{ item.dataNascimento }}</td>
-          <td class="actions">
+          <td class="actions" :data-testid="item.nome">
             <button>
               <PencilIcon class="icon" v-on:click="editUser(item.id)" />
             </button>

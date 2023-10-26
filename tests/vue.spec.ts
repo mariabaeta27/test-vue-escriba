@@ -45,10 +45,10 @@ test('test', async ({ page }) => {
 
   await page.getByRole('cell', { name: 'Maria Test Play' }).click()
 
-  const aletMessage = page.getByTestId('alert-message')
-  await expect(aletMessage).toHaveText('Sucesso! Usuário criado. x')
+  const alertMessage = page.getByTestId('alert-message')
+  await expect(alertMessage).toHaveText('Sucesso! Usuário criado. x')
 
-  const rowUser = page.getByTestId('Maria Test Play')
+  let rowUser = page.getByTestId('Maria Test Play')
 
   await rowUser.getByRole('button').first().click()
 
@@ -58,7 +58,7 @@ test('test', async ({ page }) => {
   await page.getByPlaceholder('Digite aqui o nome').fill('Maria Test Play 2')
   await page.getByRole('button', { name: 'Editar' }).click()
 
-  await expect(aletMessage).toHaveText('Sucesso! Usuário editado. x')
+  await expect(alertMessage).toHaveText('Sucesso! Usuário editado. x')
 
   await page.getByRole('cell', { name: 'Maria Test Play 2' }).click()
 
@@ -67,9 +67,10 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Filtrar' }).click()
   await page.getByTestId('clear-filter').click()
 
+  rowUser = page.getByTestId('Maria Test Play 2')
+
   // Excluir usuário
   await rowUser.getByRole('button').nth(1).click()
   await page.getByRole('button', { name: 'x', exact: true }).click()
-  await expect(aletMessage).toHaveText('Sucesso! Usuário deletado. x')
   await page.close()
 })

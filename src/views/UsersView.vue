@@ -11,11 +11,10 @@ const message = computed(() => store.getters.getMessage)
 const errorMessage = computed(() => store.getters.getErrorMessage)
 
 const closeAfterTimeout = () => {
-  console.log('Passou aqui'),
-    setTimeout(() => {
-      clearErrorMessage()
-      clearMessage()
-    }, 1000)
+  setTimeout(() => {
+    clearErrorMessage()
+    clearMessage()
+  }, 10000)
 }
 
 onMounted(async () => {
@@ -55,7 +54,9 @@ const clearMessage = () => {
     <TitleComponent text="Lista de Usuários" />
     <FilterComponent />
     <div class="add-button">
-      <button @click="showModal" class="custom-button" type="button">Adicionar</button>
+      <button data-testid="addUser" @click="showModal" class="custom-button" type="button">
+        Adicionar
+      </button>
     </div>
     <TableComponent :body="users" @showModal="showModal" />
     <ModalComponent
@@ -65,12 +66,12 @@ const clearMessage = () => {
       :userId="data.idUser"
     />
 
-    <div v-if="errorMessage" class="custom-alert error">
+    <div v-if="errorMessage" class="custom-alert error" data-testid="alert-error">
       {{ errorMessage }}
       <button @click="clearErrorMessage" class="close-button button-message-error">x</button>
     </div>
 
-    <div v-if="message" class="custom-alert message">
+    <div v-if="message" class="custom-alert message" data-testid="alert-message">
       {{ message }}
       <button @click="clearMessage" class="close-button button-message">x</button>
     </div>

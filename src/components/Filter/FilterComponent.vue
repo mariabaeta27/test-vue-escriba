@@ -24,7 +24,7 @@ const clearInput = () => {
     <div class="input">
       <input placeholder="Filtar Usuários" v-model="data.text" />
       <button class="clear" type="button" @click="clearInput">
-        <p>X</p>
+        <p data-testid="clear-filter">X</p>
       </button>
     </div>
     <ButtonComponent text="Filtrar" />
