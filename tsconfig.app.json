@@ -7,6 +7,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "strict": true,
+    "types": ["node", "webpack-env"]
   }
 }

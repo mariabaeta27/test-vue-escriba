@@ -1,71 +1,101 @@
-# test-vue-escriba
+# Teste Escriba
 
-This template should help get you started developing with Vue 3 in Vite.
+**Descrição:** O testes tem como objetivo validar os conhecimentos em Vue.js, JavaScript, Html, Css.
 
-## Recommended IDE Setup
+**Pessoa avaliada:** [Maria Baeta](https://github.com/mariabaeta27)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+**Stacks**: VUE 3, Axios, VUEX 4, Playwright, TypeScript,
 
-## Type Support for `.vue` Imports in TS
+**Desafio**: Implementar o front-end consumindo uma API Restful, com as funcionalidades abaixo:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Cadastro de pessoa
+  
+  - [x] Listar;
+  - [x] Filtrar 
+  - [x] Adicionar;
+  - [x] Editar;
+  - [x] Excluir;
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+- **Realizar validação dos dados abaixo no front:**
+  - [x] Nome obrigatório;
+  - [x] CPF válido;
+  - [x] Caso o servidor retorne erro, apresentá-lo amigavelmente ao usuário.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- **Bônus**:
+  - **Cadastro de pedido e seus itens**:
+    - [ ] Listar;
+    - [ ] Filtrar;
+    - [ ] Adicionar
+    - [ ] Editar
+    - [ ] Excluir
 
-## Customize configuration
+  - [ ] Adaptação mobile (layout responsivo)
+  - [x] Legibilidade;
+  - [x] Boa documentação;
+  - [x] Testes automatizados;
+  - [x] Utilização da biblioteca Vuex.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Setup dp projeto
 
-## Project Setup
+- Baixar o arquivo do projeto e descompactar o arquivo .zip
+- Acesse a pasta do projeto
+```sh
+cd test-vue-escriba
+```
+- Instale as depedencias com o comando: (Recomendo a utilização do Yarn como gerenciador de pacotes, mas pode usar o de sua preferência)
+
 
 ```sh
-npm install
+yarn
 ```
 
-### Compile and Hot-Reload for Development
+- Para rodar o service, instate o json-server:
 
 ```sh
-npm run dev
+npm install -g json-server
 ```
 
-### Type-Check, Compile and Minify for Production
+## Rodar o server
 
 ```sh
-npm run build
+json-server --watch ./data.json
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Isso ira disponibilizar uma API Rest rodando nas sequinte rotas: 
 
 ```sh
-npm run test:unit
+ http://localhost:3000/pessoas
+ http://localhost:3000/produtos
+ http://localhost:3000/pedidos
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+
+## Rodando o projeto
+
+Com o comando a seguir execute o projeto e no seu navegador acesse:
+
 
 ```sh
-# Install browsers for the first run
-npx playwright install
+  yarn dev
 
-# When testing on CI, must build the project first
-npm run build
+http://localhost:5173/
 
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Lint com [ESLint](https://eslint.org/)
+Com o comando a seguir  execute o Lint:
 
 ```sh
-npm run lint
+yarn run lint
 ```
+
+## Testes de integração com [Playwright](https://playwright.dev/)
+Com o comando a seguir execute os testes de integração:
+
+```sh
+ npx playwright test --ui
+```
+
+Após ira abrir um navegador de simulação, clique no icone de play para iniciar a execução dos testes::
+
+![Play]('/src/assets/play.png')
