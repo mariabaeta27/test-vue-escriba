@@ -9,9 +9,9 @@ import axios from 'axios'
 const store = createStore({
   state: {
     users: [],
+    filteredUsers: [],
     status: '',
     error: '',
-
     routes
   },
   getters: {
@@ -21,15 +21,11 @@ const store = createStore({
         dataNascimento: format(new Date(user.dataNascimento), 'dd/MM/yyyy')
       }))
     },
-    filterUsers({ users }, name) {
-      return users.filter((user: InterfaceUser) =>
-        user.nome.toLocaleLowerCase().includes(name.toLocaleLowerCase())
-      )
-    }
+    getFilteredUsers: (state) => state.filteredUsers
   },
   mutations: {
     GET_USERS(state, users) {
-      state.users = users.data
+      state.users = users
     },
     ERROR(state, error) {
       state.error = error
@@ -42,7 +38,7 @@ const store = createStore({
     async getUsers({ commit }) {
       try {
         const users = await axios.get('http://localhost:3000/pessoas')
-        commit('GET_USERS', users)
+        commit('GET_USERS', users.data)
         commit('SET_STATUS', users.statusText)
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
@@ -55,6 +51,21 @@ const store = createStore({
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel deletar esse usuário')
       }
+    },
+
+    async filterUsers({ commit, state }, name) {
+      let filteredUsers
+
+      if (!name) {
+        const users = await axios.get(`http://localhost:3000/pessoas/}`)
+        filteredUsers = users.data
+      } else {
+        filteredUsers = state.users.filter((user: InterfaceUser) =>
+          user.nome.toLowerCase().includes(name.toLowerCase())
+        )
+      }
+
+      commit('GET_USERS', filteredUsers)
     }
   }
 })

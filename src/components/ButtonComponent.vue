@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <button class="custom-button">
+  <button class="custom-button" type="submit">
     <p>{{ text }}</p>
     <span v-if="icon">
       <svg

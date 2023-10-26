@@ -11,6 +11,12 @@
       "nome": "Maria Teste",
       "cpf": "000.000.003-00",
       "dataNascimento": "1999-12-31"
+    },
+    {
+      "id": 4,
+      "nome": "Felipe Teste",
+      "cpf": "000.000.003-00",
+      "dataNascimento": "1999-12-31"
     }
   ],
   "produtos": [
