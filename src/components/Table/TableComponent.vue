@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import type { InterfaceBodyTableUser } from '@/types'
+import type { InterfaceUser } from '@/types'
 import { PencilIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { useStore } from 'vuex'
+const store = useStore()
+
+function deleteUser(id: number) {
+  store.dispatch('deleteUser', id)
+}
 
 defineProps<{
-  body: InterfaceBodyTableUser[]
+  body: InterfaceUser[]
 }>()
 </script>
 
@@ -18,16 +24,16 @@ defineProps<{
         <th class="cell-actions">Ações</th>
       </thead>
       <tbody>
-        <tr v-for="item in body" :key="item.id.children">
-          <td>{{ item.id.children }}</td>
-          <td>{{ item.nome.children }}</td>
-          <td>{{ item.cpf.children }}</td>
-          <td>{{ new Date(item.dataNascimento.children) }}</td>
+        <tr v-for="item in body" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.cpf }}</td>
+          <td>{{ item.dataNascimento }}</td>
           <td class="actions">
             <button>
               <PencilIcon class="icon" />
             </button>
-            <button>
+            <button v-on:click="deleteUser(item.id)">
               <XMarkIcon class="icon" />
             </button>
           </td>
