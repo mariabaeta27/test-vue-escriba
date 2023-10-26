@@ -53,9 +53,9 @@ const closeModal = () => {
       </header>
       <form class="modal-content-inputs" @submit="submitForm">
         <label for="">Nome</label>
-        <input class="input" v-model="data.nome" required />
+        <input class="input" v-model="data.nome" required placeholder="Digite aqui o nome" />
         <label for="">Documento</label>
-        <input class="input" v-model="data.cpf" />
+        <input class="input" v-model="data.cpf" placeholder="Digite aqui o CPF" />
         <label for="">Data de nascimento</label>
         <input class="input" v-model="data.dataNascimento" type="date" required />
         <footer>

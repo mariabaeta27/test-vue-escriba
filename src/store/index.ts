@@ -13,8 +13,8 @@ import moment from 'moment'
 const store = createStore({
   state: {
     users: [],
-    status: '',
-    error: '',
+    message: '',
+    errorMessage: '',
     idUser: '',
     routes,
     user: ''
@@ -32,6 +32,12 @@ const store = createStore({
 
     getUser({ user }) {
       return user
+    },
+    getMessage({ message }) {
+      return message
+    },
+    getErrorMessage({ errorMessage }) {
+      return errorMessage
     }
   },
   mutations: {
@@ -39,10 +45,7 @@ const store = createStore({
       state.users = users
     },
     ERROR(state, error) {
-      state.error = error
-    },
-    SET_STATUS(state, status) {
-      state.status = status
+      state.errorMessage = error
     },
 
     GET_USER_ID(state, id) {
@@ -50,21 +53,28 @@ const store = createStore({
     },
     GET_USER(state, data) {
       state.user = data
+    },
+    MESSAGE(state, message) {
+      state.message = message
+    },
+    clearErrorMessage(state) {
+      state.errorMessage = ''
+    },
+    clearMessage(state) {
+      state.message = ''
     }
   },
   actions: {
     async getUsers({ commit }, userName) {
       try {
-        const { data, statusText } = await axios.get('http://localhost:3000/pessoas')
+        const { data } = await axios.get('http://localhost:3000/pessoas')
 
         const users = userName
           ? data.filter((user: InterfaceUser) =>
               user.nome.toLowerCase().includes(userName.toLowerCase())
             )
           : data
-
         commit('GET_USERS', users)
-        commit('SET_STATUS', statusText)
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
       }
@@ -76,8 +86,7 @@ const store = createStore({
 
         const { data } = await axios.get('http://localhost:3000/pessoas')
         commit('GET_USERS', data)
-
-        commit('SET_STATUS', 'OK')
+        commit('MESSAGE', 'Sucesso! Usuário deletado.')
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel deletar esse usuário')
       }
@@ -85,23 +94,16 @@ const store = createStore({
 
     async getUser({ commit, state }) {
       try {
-        const { data, statusText } = await axios.get(
-          `http://localhost:3000/pessoas/${state.idUser}`
-        )
-
+        const { data } = await axios.get(`http://localhost:3000/pessoas/${state.idUser}`)
         commit('GET_USER', data)
-        commit('SET_STATUS', statusText)
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
       }
     },
 
     async manageUser({ commit, state }, user: InterfaceUser) {
-      console.log(user)
-
       try {
         const documentIsValid = cpf.isValid(user.cpf)
-        console.log(documentIsValid)
         if (!documentIsValid) {
           throw new Error('Ops! Ocorreu o seguinte erro: Cpf informado é inválido')
         }
@@ -110,9 +112,11 @@ const store = createStore({
           : await axios.put(`http://localhost:3000/pessoas/${state.idUser}`, user)
 
         const { data } = await axios.get('http://localhost:3000/pessoas')
+
+        commit('MESSAGE', !state.idUser ? 'Sucesso! Usuário criado.' : 'Sucesso! Usuário editado.')
+
         commit('GET_USERS', data)
       } catch (error) {
-        console.log()
         commit('ERROR', error)
       }
 
@@ -120,7 +124,6 @@ const store = createStore({
     },
 
     setUserId({ commit }, id) {
-      console.log(id)
       commit('GET_USER_ID', id)
     }
   }
