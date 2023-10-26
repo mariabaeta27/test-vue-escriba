@@ -10,7 +10,7 @@ const data = ref({
 const submitForm = (event: Event) => {
   event.preventDefault()
 
-  store.dispatch('filterUsers', data.value.text)
+  store.dispatch('getUsers', data.value.text)
 }
 
 const clearInput = () => {

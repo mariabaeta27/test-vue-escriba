@@ -35,11 +35,18 @@ const store = createStore({
     }
   },
   actions: {
-    async getUsers({ commit }) {
+    async getUsers({ commit }, userName) {
       try {
-        const users = await axios.get('http://localhost:3000/pessoas')
-        commit('GET_USERS', users.data)
-        commit('SET_STATUS', users.statusText)
+        const { data, statusText } = await axios.get('http://localhost:3000/pessoas')
+
+        const users = userName
+          ? data.filter((user: InterfaceUser) =>
+              user.nome.toLowerCase().includes(userName.toLowerCase())
+            )
+          : data
+
+        commit('GET_USERS', users)
+        commit('SET_STATUS', statusText)
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel retornar os usuários')
       }
@@ -51,21 +58,6 @@ const store = createStore({
       } catch (error) {
         commit('ERROR', 'Ops! Ocorreu o seguinte erro: Não foi possivel deletar esse usuário')
       }
-    },
-
-    async filterUsers({ commit, state }, name) {
-      let filteredUsers
-
-      if (!name) {
-        const users = await axios.get(`http://localhost:3000/pessoas/}`)
-        filteredUsers = users.data
-      } else {
-        filteredUsers = state.users.filter((user: InterfaceUser) =>
-          user.nome.toLowerCase().includes(name.toLowerCase())
-        )
-      }
-
-      commit('GET_USERS', filteredUsers)
     }
   }
 })
