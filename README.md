@@ -58,7 +58,7 @@ npm install -g json-server
 ## Rodar o server
 
 ```sh
-json-server --watch ./data/data.json
+json-server --watch ./data.json
 ```
 
 Isso ira disponibilizar uma API Rest rodando nas sequinte rotas: 

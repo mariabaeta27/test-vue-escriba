@@ -30,11 +30,6 @@ test('test', async ({ page }) => {
     'Error: Ops! Ocorreu o seguinte erro: Cpf informado é inválido x'
   )
 
-  const closeModal = page.getByRole('button', {
-    name: /x/i,
-    exact: true
-  })
-
   buttonAddUser.click()
 
   await page.getByPlaceholder('Digite aqui o nome').fill('Maria Test Play')
