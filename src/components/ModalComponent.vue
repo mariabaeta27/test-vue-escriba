@@ -13,10 +13,9 @@ defineProps<{
   userId: number
 }>()
 
-onMounted(() => {
+onMounted(async () => {
   if (id.value) {
-    store.dispatch('getUser')
-    console.log(user.value)
+    await store.dispatch('getUser')
     data.value.nome = user.value.nome
     data.value.cpf = user.value.cpf
     data.value.dataNascimento = user.value.dataNascimento

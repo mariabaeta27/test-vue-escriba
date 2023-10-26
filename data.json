@@ -11,6 +11,12 @@
       "nome": "cliente 2",
       "cpf": "000.000.001-00",
       "dataNascimento": "1999-12-31"
+    },
+    {
+      "nome": "Maria ",
+      "cpf": "120.023.346-84",
+      "dataNascimento": "1994-09-27",
+      "id": 3
     }
   ],
   "produtos": [

@@ -7,8 +7,9 @@ import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
 const users = computed(() => store.getters.formatUsers)
-onMounted(() => {
-  store.dispatch('getUsers')
+
+onMounted(async () => {
+  await store.dispatch('getUsers')
 })
 
 const data = ref({
